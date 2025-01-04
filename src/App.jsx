@@ -19,11 +19,19 @@ function Square({ value, onSquareClick }) {
 
 function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [xIsNext, setXIsNext] = useState(true);
 
   function handleSquareClick(index) {
     const auxSquares = squares.slice();
-    auxSquares[index] = "X";
+
+    if (xIsNext) {
+      auxSquares[index] = "X";
+    } else {
+      auxSquares[index] = "O";
+    }
+
     setSquares(auxSquares);
+    setXIsNext(!xIsNext);
   }
 
   return (
